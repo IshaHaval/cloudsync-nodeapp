@@ -31,10 +31,10 @@ app.get('/health', (req, res) => {
     res.sendFile(healthPath);
 });
 
-// Start server and auto open browser
+// Start server and auto open browser only locally (not in production)
 app.listen(port, () => {
     console.log(`🚀 Server is running on port ${port}`);
-    if (process.env.NODE_ENV !== 'production') { // Only open browser locally
+    if (process.env.NODE_ENV !== 'production') { // Check if it's not production
         open(`http://localhost:${port}`);
     }
 });
