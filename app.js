@@ -24,7 +24,6 @@ app.get('/about', (req, res) => {
     res.sendFile(aboutPath);
 });
 
-
 // ➡️ Health Check Route
 app.get('/health', (req, res) => {
     const healthPath = __dirname + '/public/health.html';
@@ -35,5 +34,7 @@ app.get('/health', (req, res) => {
 // Start server and auto open browser
 app.listen(port, () => {
     console.log(`🚀 Server is running on port ${port}`);
-    open(`http://localhost:${port}`); // No need for `await` here with version 8.x.x
+    if (process.env.NODE_ENV !== 'production') { // Only open browser locally
+        open(`http://localhost:${port}`);
+    }
 });
